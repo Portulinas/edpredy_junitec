@@ -1,0 +1,199 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="pt"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" type="image/png" href="fonts/favicons.png">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+	    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <style>
+            body {
+                padding-top: 50px;
+                padding-bottom: 20px;
+            }
+        </style>
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+		<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/pt_PT/sdk.js#xfbml=1&version=v2.7&appId=626692450824492";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">EDP Re:dy</a>
+        </div>
+    </nav>
+
+    <div class="container">
+      <div class="container">
+        <div class="col-md-8 col-sm-8">
+          <h3>Gráficos</h3>
+          <div class="panel-group wrap" id="bs-collapse">
+
+            <div class="panel">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#" href="#one">
+                    Temperatura
+                  </a>
+                </h4>
+              </div>
+              <div id="one" class="panel-collapse collapse in">
+                <div class="panel-body">
+                  <div id="grafico1" style="width: 480px; height: 400px; margin-left: 4%;"><!-- Plotly chart will be drawn inside this DIV --></div>
+                <form style="    width: 50%;    margin: 0 auto;     margin-top: -6%;">
+					<label onclick="change_chart('temp')" class="radio-inline">
+						<input type="radio" checked="checked" name="optradio_temp" value="int" id="int">Interior + Exterior
+					</label>
+					<br>
+					<label onclick="change_chart('temp')"  class="radio-inline">
+						<input type="radio" name="optradio_temp" value="ext" name="ext">Interior + Exterior Prevista
+					</label>
+					
+				</form>
+				</div>
+              </div>
+
+            </div>
+            <!-- end of panel -->
+
+            <div class="panel">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#" href="#two">
+                   Humidade
+                  </a>
+                </h4>
+              </div>
+              <div id="two" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <div id="grafico2" style="width: 480px; height: 400px; margin-left: 4%;"><!-- Plotly chart will be drawn inside this DIV --></div>
+					<form style="    width: 50%;    margin: 0 auto;     margin-top: -6%;">
+						<label onclick="change_chart('hum')" class="radio-inline">
+							<input type="radio" checked="checked" name="optradio_hum" value="int" id="int1">Interior + Exterior </a> 
+						</label>
+						<br>
+						<label onclick="change_chart('hum')"  class="radio-inline">
+							<input type="radio" name="optradio_hum" value="ext" name="ext">Interior + Exterior Prevista
+						</label>
+					</form>
+				  </div>
+
+              </div>
+            </div>
+            <!-- end of panel -->
+
+          </div>
+          <!-- end of #bs-collapse  -->
+
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+          <h3>Informações</h3>
+          <div class="panel-group wrap" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel">
+              <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Informações
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+				<h1 id="titulo" style="text-align: center;font-size: 16px;"></h1>
+					<ol  type="1" style="padding-left: 5%;text-align: justify;">
+						<li id="janela">Não existem semelhanças de temperatura com o exterior, é provável que a janela esteja fechada</li>
+						<br>
+						<li id="temperatura">Se a temperatura estiver fora da gama de conforto (Ti>26 ou Ti<20 ou HR<20 ou HR>85) o conforto higrotérmico não está assegurado</li>
+						<br>
+						<li id="humidade">A humidade relativa da sala encontra-se nos dentro dos padrões normais</li>
+					</ol>
+                </div>
+              </div>
+            </div>
+            <!-- end of panel -->
+
+            <div class="panel">
+              <div class="panel-heading" role="tab" id="headingFour">
+                <h4 class="panel-title">
+                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    Mudar Data
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                <div class="panel-body">
+					<div onclick="change_date();" id="datepicker"></div>				
+				</div>
+              </div>
+            </div>
+            <!-- end of panel -->
+			<br>
+			<div class="fb-page" data-href="https://www.facebook.com/Poupan%C3%A7a-Energ%C3%A9tica-Junitec-1913161425577883" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Poupan%C3%A7a-Energ%C3%A9tica-Junitec-1913161425577883" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Poupan%C3%A7a-Energ%C3%A9tica-Junitec-1913161425577883">Poupança Energética Junitec</a></blockquote></div>
+
+          </div>
+          <!-- end of #accordion -->
+        </div>
+      </div>
+      <!-- end of container -->
+      <hr>
+
+      <footer>
+        <p>&copy; Junitec 2016 </p>
+      </footer>
+    </div> <!-- /container -->
+<script src="http://code.jquery.com/jquery-1.12.4.js"></script>    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+		<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+ 
+ <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+	<script>
+		$('#datepicker').datepicker({ beforeShowDay: available, 
+			onSelect: function(){
+				var day = $("#datepicker").datepicker("getDate").getDate();
+				both = false;
+				if((''+day).length==1){
+					day = '0'+day;
+					console.log("day 1 digito");
+				}
+				current_file = "js/data/2016-09-"+day+"_Int.csv";
+				readCVSFile(current_file);
+				$('#int').prop('checked', true);
+				$('#int1').prop('checked', true);
+				change_data_chart("temp");
+				change_data_chart("hum");
+			}});
+</script>
+ 
+    </body>
+</html>
